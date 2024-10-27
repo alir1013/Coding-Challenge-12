@@ -41,24 +41,32 @@ canvas.addEventListener("mouseup", () => {  // detects mouse up
 // Task 3: Implement Shape Drawing Logic
 function drawShape(tool, startX, startY, mouseX, mouseY) {
     drawingContext.clearRect(0, 0, canvas.width, canvas.height);  // Clear canvas before each draw
-    if (tool === "line") {
+    if (tool === "line") {            //Selecting the tool "line"
 
         drawingContext.beginPath();
         drawingContext.moveTo(startX, startY);
         drawingContext.lineTo(mouseX, mouseY);
         drawingContext.stroke();
 
-    } else if (tool === "rectangle") {
-
-        drawingContext.beginPath();
-        drawingContext.rect(startX, startY, mouseX - startX, mouseY - startY);
-        drawingContext.stroke();
-
-    } else if (tool === "circle") {
-
+    } else if (tool === "circle") {  //Selecting the tool "circle"
+ 
         const radius = Math.sqrt((mouseX - startX) * (mouseX - startX) + (mouseY - startY) * (mouseY - startY));
         drawingContext.beginPath();
         drawingContext.arc(startX, startY,radius, 0, 2 * Math.PI);
         drawingContext.stroke();
-    }
-}
+    
+
+} else if (tool === "rectangle") {    //Selecting the tool "rectangle"
+
+    drawingContext.beginPath();
+    drawingContext.rect(startX, startY, mouseX - startX, mouseY - startY);
+    drawingContext.stroke();
+
+}}
+
+//Task 4: Add Color Selection and Canvas Clearing
+
+const clearButton = document.getElementById("clearTheCanvas");   //Clear Canvas Button
+clearButton.addEventListener("click", () => {
+    drawingContext.clearRect(0, 0, canvas.width, canvas.height); 
+});
